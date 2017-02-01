@@ -1,0 +1,28 @@
+<project default='compile'>
+
+	<target name='init' depends='clean'>
+		<echo message='This project is about to initialize' />
+		<mkdir dir='bin' />
+	</target>
+
+	<target name='clean'>
+		<delete dir='bin' />
+	</target>
+
+	<target name='compile' depends='init'>
+		<echo message='This assignment is about to initialize' />
+		<javac srcdir='src' destdir='bin' />
+	</target>
+
+	<target name='jar' depends='compile'>
+		<jar destfile='Assignment3.jar' basedir='./bin/' includes="
+			**/*.class" />
+	</target>
+
+	<target name='run' depends='jar'>
+		<java classname='driver.MyParser' fork='true'>
+			<classpath path='Assignment3.jar' />
+		</java>
+	</target>
+
+</project>
